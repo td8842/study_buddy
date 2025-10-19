@@ -87,29 +87,7 @@ label start: # day 1
     traveller "You session time is [int(times[SESSION_TIME]/60)] minutes"
     traveller "You break time is [int(times[BREAK_TIME]/60)] minutes"
 
-    python:
-        times[SESSION_TIME] = min(times[SESSION_TIME], times[STUDY_TIME])
-        times[STUDY_TIME] -= times[SESSION_TIME]
-        times[BREAK_TIME] = min(times[BREAK_TIME], times[STUDY_TIME])
-        times[STUDY_TIME] -= times[BREAK_TIME]
-
-    while times[SESSION_TIME] > 0:
-        traveller "Remaining session time [times[SESSION_MINUTES]:02]:[times[SESSION_SECONDS]:02]{w=1}{nw}"
-        python:
-            times[SESSION_TIME] -= 1
-            times[SESSION_MINUTES] = int(times[SESSION_TIME] / 60)
-            times[SESSION_SECONDS] = times[SESSION_TIME] % 60
-
-    while times[BREAK_TIME] > 0:
-        traveller "Remaining break time [times[BREAK_MINUTES]:02]:[times[BREAK_SECONDS]:02]{w=1}{nw}"
-        python:
-            times[BREAK_TIME] -= 1
-            times[BREAK_MINUTES] = int(times[BREAK_TIME] / 60)
-            times[BREAK_SECONDS] = times[BREAK_TIME] % 60
-
-    # stops game from skipping after the timer ends
-    python:
-        renpy.choice_for_skipping()
+    call countdown
 
     # if session completed, exit the game
     if times[STUDY_TIME] == 0:
@@ -134,3 +112,29 @@ label day1_midnight:
 
 label day2:
     traveller "It's day 2 now"
+
+label countdown:
+    python:
+        times[SESSION_TIME] = min(times[SESSION_TIME], times[STUDY_TIME])
+        times[STUDY_TIME] -= times[SESSION_TIME]
+        times[BREAK_TIME] = min(times[BREAK_TIME], times[STUDY_TIME])
+        times[STUDY_TIME] -= times[BREAK_TIME]
+
+    while times[SESSION_TIME] > 0:
+        # display message, wait 1 second, then skip
+        traveller "Remaining session time [times[SESSION_MINUTES]:02]:[times[SESSION_SECONDS]:02]{w=1}{nw}"
+        python:
+            times[SESSION_TIME] -= 1
+            times[SESSION_MINUTES] = int(times[SESSION_TIME] / 60)
+            times[SESSION_SECONDS] = times[SESSION_TIME] % 60
+
+    while times[BREAK_TIME] > 0:
+        traveller "Remaining break time [times[BREAK_MINUTES]:02]:[times[BREAK_SECONDS]:02]{w=1}{nw}"
+        python:
+            times[BREAK_TIME] -= 1
+            times[BREAK_MINUTES] = int(times[BREAK_TIME] / 60)
+            times[BREAK_SECONDS] = times[BREAK_TIME] % 60
+
+    # stops game from skipping after the timer ends
+    python:
+        renpy.choice_for_skipping()
