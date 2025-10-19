@@ -21,7 +21,7 @@ image bg night = "gui/night_city.jpg"
 image bg living = "gui/living_room.jpg"  
 image bg bedroom = "gui/bedroom.jpg"
 image bg igloo ="gui/igloo break.png"
-image bg artic = "gui/articnight.jpeg"
+image bg artic = "gui/artic.png"
 image bg ramen = "gui/ramenstore.jpeg"
 image bg seabreak = "gui/seabreak.png"
 image bg ramenbreak = "gui/ramenbreak.png"
@@ -305,6 +305,7 @@ label day2:
     'Though there are no polar bears in Antarctica,\nI appreciate the sentiment and let Ryley take guard.'
     'Its time to lock in.'
     show bg igloo
+    hide r happy
     call countdown
 
     # while times[STUDY_TIME] > 0:
