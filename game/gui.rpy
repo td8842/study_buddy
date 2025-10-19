@@ -286,19 +286,19 @@ define gui.main_menu_text_xalign = 1.0
 ## These variables control the look of frames that can contain user interface
 ## components when an overlay or window is not present.
 
-## Generic frames.
+# ## Generic frames.
 define gui.frame_borders = Borders(4, 4, 4, 4)
 
-## The frame that is used as part of the confirm screen.
+# ## The frame that is used as part of the confirm screen.
 define gui.confirm_frame_borders = Borders(40, 40, 40, 40)
 
-## The frame that is used as part of the skip screen.
+# ## The frame that is used as part of the skip screen.
 define gui.skip_frame_borders = Borders(16, 5, 50, 5)
 
-## The frame that is used as part of the notify screen.
+# ## The frame that is used as part of the notify screen.
 define gui.notify_frame_borders = Borders(16, 5, 40, 5)
 
-## Should frame backgrounds be tiled?
+# ## Should frame backgrounds be tiled?
 define gui.frame_tile = False
 
 

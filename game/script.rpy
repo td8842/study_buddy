@@ -7,9 +7,14 @@ define SESSION_TIME = 1
 define BREAK_TIME = 2
 
 # character and background definitions
-default r = Character("Ryley")
+define r = Character("Ryley", image = "gui/neutral.png")
 default unknown = Character("???")
 default you = Character("You")
+
+image side r neutral = "gui/neutral.png"
+image side r happy = "gui/happy.png"
+
+
 
 image bg afternoon = "gui/afternoon.jpg"
 image bg night = "gui/night_city.jpg"
@@ -20,6 +25,7 @@ image bg artic = "gui/articnight.jpeg"
 image bg ramen = "gui/ramenstore.jpeg"
 image bg seabreak = "gui/seabreak.png"
 image bg ramenbreak = "gui/ramenbreak.png"
+image bg mainmenu = "gui/main menu.PNG"
 
 default alternate_path = False
 
@@ -81,6 +87,7 @@ label start: # day 1
     unknown 'Heya, [user_name]!! You ready to study?'
     'I jump in my seat, and whip around\ntowards the sound of the voice.\nNot from the door, but from the window?!'
     you '!!! I told you to stop jumpscaring me!\n Seriously, my heart cant take it anymore!'
+
 
     'Thats my childhood friend, my study buddy Ryley.'
     r 'So, what are we studying today, hmmm?'
@@ -167,7 +174,7 @@ label day1_midnight1:
     'No matter how long though, Ryley always waits for me despite never studying themself\nIm glad to have a friend like–'
 
     show bg ramenbreak
-    
+
     'I hear the worlds loudest slurp next to me,\nbelonging to none other than Ryley.'
     r 'So good! \nI could eat 9 more bowls.'
     you 'Hey, let me have my moment! Were overdue for some exposition!'
