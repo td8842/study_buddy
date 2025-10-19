@@ -278,9 +278,7 @@ label day2:
     while times[STUDY_TIME] > 0:
         call countdown
 
-    return
-    
-    'RING RING RIIIIIING!!!'
+        'RING RING RIIIIIING!!!'
     r 'Tiiimes up!!!!'
     'I set my pencil down and stand up, the snow crackling beneath me.'
     r 'Did you study well? You were so locked in, considering its 30 below outside!!'
@@ -288,6 +286,9 @@ label day2:
     you 'Surprised its so warm in here then..!'
 
     'We enjoy a warm, cozy night in the igloo.'
+    return
+    
+
 
 label countdown:
     python:
