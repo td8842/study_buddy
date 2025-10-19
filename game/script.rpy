@@ -30,13 +30,17 @@ label start: # day 1
             try:
                 times[STUDY_TIME] = renpy.input("How long do you want to study for (total) (in minutes)?").strip()
                 times[STUDY_TIME] = int(times[STUDY_TIME])
+                break
             except:
                 "Input error" "please input number"
+        while True:
             try:
                 times[SESSION_TIME] = renpy.input("How often do you want to have a break (in minutes)?").strip()
                 times[SESSION_TIME] = int(times[SESSION_TIME])
+                break
             except:
                 "Input error" "please input number"
+        while True:
             try:
                 times[BREAK_TIME] = renpy.input("How long do you want your break time to be (in minutes)?").strip()
                 times[BREAK_TIME] = int(times[BREAK_TIME])
