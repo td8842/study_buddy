@@ -19,7 +19,6 @@ image bg bedroom = "gui/bedroom.jpg"
 default alternate_path = False
 
 #sound effects
-default audio.studied = "audio/studied.mp3" 
 
 label start: # day 1
     # initialization
@@ -62,7 +61,7 @@ label start: # day 1
     'The sun begins its descent in the sky as I walk \nhome from school.'
     'The cicadas are crying, and inside, so am I...'
     'I am soooo behind on my classes.'
-    play sound studied
+
     # play music
     'Last week, I was 38 minutes short of my\nweekly 40 hours of studying.'
     'The week before that, 41 minutes.'
@@ -113,7 +112,6 @@ label start: # day 1
     # if session completed, exit the game
     if times[STUDY_TIME] == 0:
         traveller "Congrats in conpleting your study session"
-        play audio studied
         return
    
     traveller "Remaining study time: [int(times[STUDY_TIME]/60)] minutes"
@@ -134,7 +132,7 @@ label day1_evening:
     'Though it felt like I just sat down, apparently the timer thinks otherwise.'
     you 'Huh?! Already? But I just started.'
     'I look at my desk. I realize I already finished what I sat down to do.\nHuh, time does move fast when youre locked in.'
-    r 'Cmon, let’s do something before dinner. Im tired of sitting around!'
+    r 'Cmon, lets do something before dinner. Im tired of sitting around!'
     'The light pours through the window, illuminating the room with gold.'
     you 'Well, we still have some time before dinner wanna play a game?'
     'Ryley pulls out their phone with an evil glint in their eyes.'
@@ -230,13 +228,66 @@ label day1_midnight2:
 
 label day2:
     traveller "It's day 2 now"
-    'Its a Tuesday morning, when…'
+    'Its a Tuesday morning, when-'
     'A devious creature spills onto the floor.\nThrough my window.\nAnd knocks over my ultra special study pencil case.'
+    r 'ahaha! surprise..!'
+    'Ryley gets up promptly and cleans up the mess with me, and looks at me with a splash of guilt on their face.'
+    you 'My ultra special blah blah blah.. every time!!'
+    'Judging from Ryleys expression,\nI immediately know somethings up.'
+    r 'Sorry, I was just so excited. you know, classes are cancelled today!'
+    'I blink. I check my phone, and sure enough, an email was sent a few seconds ago from our instructor that classes were indeed cancelled today.'
+    you 'Would you look at that. what do you wanna do today then?\nNot involving windows or pencil cases, please.'
+    'Ryley holds up a pair of suspiciously plane ticket shaped plane tickets.'
+    r 'Lets go to Antarctica!'
+
+    # bg plane
+    you 'How, how, how did we get here!!!'
+    'I look outside, and the world is snow- crystal clear, white snow as far as the eye could see.'
+    'Intercom: We are now landing. Passengers, please hang on! Its our pilots first day. Of training.'
+
+    'The plane starts to touchdown on the runway, and I might as well be on a rollercoaster.'
+
+    # bg fades to black
+    pause 2.0
+
+    'We land safely, and step outside into wonderland. Snow, snow, snow, and penguins?'
+    you 'Ryley Ryley Ryley, wanna-'
+    'I turn to Ryley, but theyre not there.\nI look back at the penguins, and\nRyley has one attached to them, already playing.'
+
+    'We spend the whole morning playing with penguins and playing with snow.\nBefore long, the temperature begins to stoop.'
+    'the Sun goes down real fast over here, it seems.'
+
+    # bg evening arctic
+
+    you 'What should we do about shelter?'
+    'Ryley thinks for a moment, and their expression brightens.'
+    r 'How about an igloo! Actually, thats kind of our only option.'
+    'Ryley pulls out a pair of hollow cubes to form snow bricks.'
+    you 'You really thought this one through, huh..!'
+    'We spend spend noon building an igloo, and before long, its complete.'
+
+    r 'There we go!! Huff huff- maybe its time a little break?'
+    'Panting, I collapse inside the igloo as well.\nRyley lights a candle, illuminating the igloo with a warm glow.'
+    you 'Huff.. I guess I can get a little studying in!'
+    'Ryley laughs as I place down my things and start studying,\nthe soft snow underneath acting like a cushion.'
+    r 'Okayyy!!! Ill watch and make sure no polar bears come knocking!'
+    'Though there are no polar bears in Antarctica,\nI appreciate the sentiment and let Ryley take guard.'
+    'Its time to lock in.'
+
     call countdown
 
     while times[STUDY_TIME] > 0:
         call countdown
     return
+
+    'RING RING RIIIIIING!!!'
+    r 'Tiiimes up!!!!'
+    'I set my pencil down and stand up, the snow crackling beneath me.'
+    r 'Did you study well? You were so locked in, considering its 30 below outside!!'
+    'I shiver only from the thought.'
+    you 'Surprised its so warm in here then..!'
+
+    'We enjoy a warm, cozy night in the igloo.'
 
 label countdown:
     python:
