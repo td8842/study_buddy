@@ -57,13 +57,13 @@ define gui.interface_text_color = '#ffffff'
 ## Fonts and Font Sizes ########################################################
 
 ## The font used for in-game text.
-define gui.text_font = "fonts/Minecraftia.ttf"
+define gui.text_font = "fonts/Perfect DOS VGA 437.ttf"
 
 ## The font used for character names.
-define gui.name_text_font = "fonts/Minecraftia.ttf"
+define gui.name_text_font = "fonts/Perfect DOS VGA 437.ttf"
 
 ## The font used for out-of-game text.
-define gui.interface_text_font = "fonts/Minecraftia.ttf"
+define gui.interface_text_font = "fonts/Perfect DOS VGA 437.ttf"
 
 ## The size of normal dialogue text.
 define gui.text_size = 22
@@ -107,8 +107,8 @@ define gui.textbox_yalign = 1.19
 
 ## The placement of the speaking character's name, relative to the textbox.
 ## These can be a whole number of pixels from the left or top, or 0.5 to center.
-define gui.name_xpos = 140
-define gui.name_ypos = 60
+define gui.name_xpos = 279
+define gui.name_ypos = 55
 
 ## The horizontal alignment of the character's name. This can be 0.0 for left-
 ## aligned, 0.5 for centered, and 1.0 for right-aligned.
@@ -131,7 +131,7 @@ define gui.namebox_tile = False
 ## The placement of dialogue relative to the textbox. These can be a whole
 ## number of pixels relative to the left or top side of the textbox, or 0.5 to
 ## center.
-define gui.dialogue_xpos = 100
+define gui.dialogue_xpos = 300
 define gui.dialogue_ypos = 120
 
 ## The maximum width of dialogue text, in pixels.
