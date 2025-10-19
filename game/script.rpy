@@ -15,6 +15,7 @@ image bg afternoon = "gui/afternoon.jpg"
 image bg night = "gui/night_city.jpg"
 image bg living = "gui/living_room.jpg"  
 image bg bedroom = "gui/bedroom.jpg"
+image bg igloo ="gui/igloo break.png"
 
 default alternate_path = False
 
@@ -106,7 +107,7 @@ label start: # day 1
     'I get everything into position and get ready, picking up my pen. Its time to lock in.'
     r 'Ill set a timer, kay? Ill tell you when youre done. Good luck~!'
 
-    # bg changes to night
+    # bg changes to igloo
 
     call countdown
 
@@ -134,7 +135,7 @@ label day1_evening:
     'Though it felt like I just sat down, apparently the timer thinks otherwise.'
     you 'Huh?! Already? But I just started.'
     'I look at my desk. I realize I already finished what I sat down to do.\nHuh, time does move fast when youre locked in.'
-    r 'Cmon, let’s do something before dinner. Im tired of sitting around!'
+    r 'Cmon, lets do something before dinner. Im tired of sitting around!'
     'The light pours through the window, illuminating the room with gold.'
     you 'Well, we still have some time before dinner wanna play a game?'
     'Ryley pulls out their phone with an evil glint in their eyes.'
