@@ -99,18 +99,8 @@ screen say(who, what):
 
     window:
         id "window"
-        xalign 0.5
-        yalign gui.textbox_yalign
-        background Frame("gui/textbox.png",48,48)
-        xsize 1280
-        ysize gui.textbox_height
-        padding (70,100,70,40)
-
         vbox:
             spacing 12
-        if who:
-            text who id "who"
-        text what id "what"
 
         if who is not None:
 
