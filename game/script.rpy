@@ -1,33 +1,37 @@
-﻿# The script of the game goes in this file.
-
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
-
-define e = Character("Eileen")
-
-
-# The game starts here.
-
+﻿define traveller = Character('Traveller')
+           
 label start:
+    
+    python:
+        user_name = renpy.input("What's your name?", length=32).strip()
 
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
+        # promting for user name and study time
+        while True:
+            try:
+                study_time = renpy.input("How long do you want to study for (in minutes)?").strip()
+                study_time = int(study_time)
+                break
+            except:
+                "Input error" "please input number"
+        
+        # convert to seconds
+        
+        study_time = study_time * 60
+        
+        study_minutes = int(study_time / 60)
+        study_seconds = study_time % 60
 
-    scene bg room
 
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
+    # show bg 
+    # show traveller #at right
+    traveller "Hi [user_name]!"
+    traveller "You will study for [int(study_time/60)] minutes"
 
-    show eileen happy
-
-    # These display lines of dialogue.
-
-    e "You've created a new Ren'Py game."
-
-    e "Once you add a story, pictures, and music, you can release it to the world!"
-
-    # This ends the game.
-
-    return
+    while study_time > 0:
+        traveller "Remaining time [study_minutes:02]:[study_seconds:02]{w=1}{nw}"#with Dissolve(0)
+        python:
+            study_time -= 1
+            study_minutes = int(study_time / 60)
+            study_seconds = study_time % 60
+    
+    hide traveller
