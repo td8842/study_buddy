@@ -166,6 +166,8 @@ label day1_midnight1:
     'Sometimes, I get pretty carried away while\nstudying and end up sitting for hours.'
     'No matter how long though, Ryley always waits for me despite never studying themself\nIm glad to have a friend like–'
 
+    show bg ramenbreak
+    
     'I hear the worlds loudest slurp next to me,\nbelonging to none other than Ryley.'
     r 'So good! \nI could eat 9 more bowls.'
     you 'Hey, let me have my moment! Were overdue for some exposition!'
