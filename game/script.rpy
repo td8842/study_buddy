@@ -109,7 +109,7 @@ label start: # day 1
     'Ryley plops down on the bed behind me, not a book in sight.'
 
     'How how how, does Ryley get by without studying!!!\nMaybe Ive got a thing or two to learn.'
-    r 'Hmm, today Im thinking [int(times[STUDY_TIME] / 60)] minutes.'
+    r 'Hmm, today Im thinking [int(times[SESSION_TIME] / 60)] minutes.'
 
     'I get everything into position and get ready, picking up my pen. Its time to lock in.'
     r 'Ill set a timer, kay? Ill tell you when youre done. Good luck~!'
