@@ -30,13 +30,13 @@ label start: # day 1
     python:
         user_name = renpy.input("What's your name?", length=32).strip()
         # promting for user name and study time
-        while True:
-            try:
-                times[STUDY_TIME] = renpy.input("How long do you want to study for per session (in minutes)?").strip()
-                times[STUDY_TIME] = int(times[STUDY_TIME])
-                break
-            except:
-                "Input error" "please input number"
+        # while True:
+        #     try:
+        #         times[STUDY_TIME] = renpy.input("How long do you want to study for per session (in minutes)?").strip()
+        #         times[STUDY_TIME] = int(times[STUDY_TIME])
+        #         break
+        #     except:
+        #         "Input error" "please input number"
         while True:
             try:
                 times[SESSION_TIME] = renpy.input("How often do you want to have a break (in minutes)?").strip()
@@ -120,11 +120,11 @@ label start: # day 1
     call countdown
 
     # if session completed, exit the game
-    if times[STUDY_TIME] == 0:
-        traveller "Congrats in conpleting your study session"
+    # if times[STUDY_TIME] == 0:
+    #     traveller "Congrats in conpleting your study session"
     #  return
    
-    traveller "Remaining study time: [int(times[STUDY_TIME] / 60)] minutes"
+    # traveller "Remaining study time: [int(times[STUDY_TIME] / 60)] minutes"
 
 
     'Ding, ding~\nThe sweet sound of the alarm pierces the silence.'
@@ -287,10 +287,10 @@ label day2:
 
     call countdown
 
-    while times[STUDY_TIME] > 0:
-        call countdown
+    # while times[STUDY_TIME] > 0:
+    #     call countdown
 
-        'RING RING RIIIIIING!!!'
+    'RING RING RIIIIIING!!!'
     r 'Tiiimes up!!!!'
     'I set my pencil down and stand up, the snow crackling beneath me.'
     r 'Did you study well? You were so locked in, considering its 30 below outside!!'
@@ -304,10 +304,10 @@ label day2:
 
 label countdown:
     python:
-        times[SESSION_TIME] = min(times[SESSION_TIME], times[STUDY_TIME])
-        times[STUDY_TIME] -= times[SESSION_TIME]
-        times[BREAK_TIME] = min(times[BREAK_TIME], times[STUDY_TIME])
-        times[STUDY_TIME] -= times[BREAK_TIME]
+        # times[SESSION_TIME] = min(times[SESSION_TIME], times[STUDY_TIME])
+        # times[STUDY_TIME] -= times[SESSION_TIME]
+        # times[BREAK_TIME] = min(times[BREAK_TIME], times[STUDY_TIME])
+        # times[STUDY_TIME] -= times[BREAK_TIME]
 
         tmp_session_time = times[SESSION_TIME]
         tmp_break_time = times[BREAK_TIME]
