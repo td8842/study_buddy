@@ -124,7 +124,7 @@ label start: # day 1
     
     # different path depends on the day
     if alternate_path:
-        jump day1_night2
+        jump day1_midnight1
     else:
         jump day1_evening
     return
@@ -149,10 +149,49 @@ label day1_evening:
     return
 
 label day1_midnight1:
-    traveller "It's midnight now"
+    'Ryley starts shaking my chair before I can even put my pencil down.'
+    you 'Okay, okay!! Im done studying.'
+    'Its so dark outside now, the moon high in the sky.\nGosh, how long was I out for.'
+    'My stomach grumbles and thunders through the room!\n I look down sheepishly.'
+    'You hungry? Come come, lets go out to eat!!\nWe can stretch our legs for a bit too!'
+    you 'I could go for some ramen.'
+    'Normally Id just make some instant noodles,\nbut itd be nice to head out for a little bit.'
+    r 'Midnight ramen always hit different. lets gooooo!'
 
-    call countdown
-    
+    show bg night
+    'Sometimes, I get pretty carried away while\nstudying and end up sitting for hours.'
+    'No matter how long though, Ryley always waits for me despite never studying themself\nIm glad to have a friend like–'
+
+    'I hear the worlds loudest slurp next to me,\nbelonging to none other than Ryley.'
+    r 'So good! \nI could eat 9 more bowls.'
+    you 'Hey, let me have my moment! Were overdue for some exposition!'
+    'I sigh happily.\nAfter every study session, Ryley and I hang out for a while- \nit almost makes the hours worth it.'
+    you 'Do you think you can even afford that many bowls?'
+    'Ryley rubs their head sheepishly.'
+    r 'Hey, its not like Im dead broke, okay?!'
+    'Ryley sets down their bowl and leans back, satisfied.'
+    'Sometimes, I get pretty carried away while\nstudying and end up sitting for hours.'
+    'No matter how long though,\nRyley always waits for me despite never studying themself.\nIm glad to have a friend like-'
+
+    r 'So [user_name], hows your academic comeback going?\nHave you rewritten all your notes yet?'
+    you 'As if thats a bad idea!!\nAnyway, I think its going all right.\nI just need to continue doing this for a while.'
+    'The chef comes by and picks up Ryleys bowl.\n Nothing left in there, not even a drop of broth.'
+    r 'Thank you for the meal~!'
+    'Ryley leaves cash for the chef to take,\nand turns to the window to stare at the neon lights outside.'
+    'Yknow, youve been pushing yourself pretty hard lately.'
+    'Im caught off a little. Why so serious!'
+    you 'Yeah, but youre helping a lot lately, you know.\nYoure kinda keeping me sane out here.'
+    'Ryley turns to me and laughs, clapping their hands together.'
+    r 'Im glad!! You got this, [user_name]~\nwe can keep having lotsa fun after studying each time too.'
+    'Its true- I have been studying a lot more lately,\nand it really has been draining.'
+
+    show bg night
+
+    you 'Thanks. Im grateful.That was pretty deep of you too, Ryley.'
+    'Ryley winks and puts their finger up to their lips\nin a shushing shape.'
+    'Dont tell anyone, kay? Youll ruin my rep.'
+    'We both laugh, and keep chatting until the store closes.'
+
     jump day2
     return
 
@@ -163,6 +202,7 @@ label day1_midnight2:
     you 'I could go for some ramen.'
     'Normally Id just make some instant noodles, but itd be nice to head out for a little bit.'
     r 'Night time ramen always hit different! lets gooooo!!!'
+
     show bg night
     pause 2.0
     'Sometimes, I get pretty carried away while studying and end up sitting for hours.'
@@ -182,16 +222,16 @@ label day1_midnight2:
     'The chef comes by and picks up Ryleys bowl. nothing left in there, not even a drop of broth.'
     r 'Thank you for the meal~!'
     'We keep chatting until the store closes.'
-    Fade()
     pause 2.0
 
-    call countdown
 
     jump day2
     return
 
 label day2:
     traveller "It's day 2 now"
+    'Its a Tuesday morning, when…'
+    'A devious creature spills onto the floor.\nThrough my window.\nAnd knocks over my ultra special study pencil case.'
     call countdown
 
     while times[STUDY_TIME] > 0:
