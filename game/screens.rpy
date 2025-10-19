@@ -99,7 +99,12 @@ screen say(who, what):
 
     window:
         id "window"
-
+        xalign 0.5
+        yalign 1.0
+        xmaximum 1000
+        yminimum 220
+        background Frame("gui/dialogbubble.png",30,30)
+        padding (40,38)
         if who is not None:
 
             window:
@@ -108,7 +113,6 @@ screen say(who, what):
                 text who id "who"
 
         text what id "what"
-
 
     ## If there's a side image, display it above the text. Do not display on
     ## the phone variant - there's no room.
