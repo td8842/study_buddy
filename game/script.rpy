@@ -16,6 +16,10 @@ image bg night = "gui/night_city.jpg"
 image bg living = "gui/living_room.jpg"  
 image bg bedroom = "gui/bedroom.jpg"
 image bg igloo ="gui/igloo break.png"
+image bg artic = "gui/articnight.jpeg"
+image bg ramen = "gui/ramenstore.jpeg"
+image bg seabreak = "gui/seabreak.png"
+image bg ramenbreak = "gui/ramenbreak.png"
 
 default alternate_path = False
 
@@ -106,11 +110,12 @@ label start: # day 1
 
     'How how how, does Ryley get by without studying!!!\nMaybe Ive got a thing or two to learn.'
 
-    r 'Hmm, today Im thinking [int(times[STUDY_TIME]/60)] minutes.'
+    r 'Hmm, today Im thinking [STUDY_TIME] minutes.'
     'I get everything into position and get ready, picking up my pen. Its time to lock in.'
     r 'Ill set a timer, kay? Ill tell you when youre done. Good luck~!'
 
-    # bg changes to igloo
+    # bg changes to night
+    show bg seabreak
 
     call countdown
 
@@ -119,7 +124,7 @@ label start: # day 1
         traveller "Congrats in conpleting your study session"
         return
    
-    traveller "Remaining study time: [int(times[STUDY_TIME]/60)] minutes"
+    traveller "Remaining study time: [STUDY_TIME] minutes"
 
     'Ding, ding~\nThe sweet sound of the alarm pierces the silence.'
     r 'TIIIMES UPPPP!!!!!'
@@ -165,6 +170,8 @@ label day1_midnight1:
     'Sometimes, I get pretty carried away while\nstudying and end up sitting for hours.'
     'No matter how long though, Ryley always waits for me despite never studying themself\nIm glad to have a friend like–'
 
+    show bg ramenbreak
+    
     'I hear the worlds loudest slurp next to me,\nbelonging to none other than Ryley.'
     r 'So good! \nI could eat 9 more bowls.'
     you 'Hey, let me have my moment! Were overdue for some exposition!'
