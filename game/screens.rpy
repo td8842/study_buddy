@@ -99,12 +99,19 @@ screen say(who, what):
 
     window:
         id "window"
-        xalign 0.5
-        yalign 1.0
-        xmaximum 1000
-        yminimum 220
-        background Frame("gui/dialogbubble.png",30,30)
-        padding (40,38)
+        xalign 0.3
+        yalign 0.92
+        xsize 1148
+        ysize 600
+        background Frame("gui/textbox.png",48,48)
+        padding (70,100,70,40)
+
+        vbox:
+            spacing 12
+        if who:
+            text who id "who"
+        text what id "what"
+
         if who is not None:
 
             window:
@@ -155,6 +162,8 @@ style say_label:
     properties gui.text_properties("name", accent=True)
     xalign gui.name_xalign
     yalign 0.5
+    xpos 0
+    ypos 0
 
 style say_dialogue:
     properties gui.text_properties("dialogue")
