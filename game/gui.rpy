@@ -251,7 +251,7 @@ define gui.file_slot_rows = 2
 
 ## The position of the left side of the navigation buttons, relative to the
 ## left side of the screen.
-define gui.navigation_xpos = 40
+define gui.navigation_xpos = 80
 
 ## The vertical position of the skip indicator.
 define gui.skip_ypos = 10
