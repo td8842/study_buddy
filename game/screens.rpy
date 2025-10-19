@@ -99,11 +99,11 @@ screen say(who, what):
 
     window:
         id "window"
-        xalign 0.3
-        yalign 0.92
-        xsize 1148
-        ysize 600
+        xalign 0.5
+        yalign gui.textbox_yalign
         background Frame("gui/textbox.png",48,48)
+        xsize 1280
+        ysize gui.textbox_height
         padding (70,100,70,40)
 
         vbox:
@@ -162,8 +162,6 @@ style say_label:
     properties gui.text_properties("name", accent=True)
     xalign gui.name_xalign
     yalign 0.5
-    xpos 0
-    ypos 0
 
 style say_dialogue:
     properties gui.text_properties("dialogue")
