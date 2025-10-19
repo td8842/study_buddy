@@ -36,17 +36,21 @@ label start: # day 1
     python:
         user_name = renpy.input("What's your name?", length=32).strip()
         # promting for user name and study time
+        # while True:
+        #     try:
+        #         times[STUDY_TIME] = renpy.input("How long do you want to study for per session (in minutes)?").strip()
+        #         times[STUDY_TIME] = int(times[STUDY_TIME])
+        #         break
+        #     except:
+        #         "Input error" "please input number"
         while True:
-            try:
-                times[STUDY_TIME] = renpy.input("How long do you want to study for (total) (in minutes)?").strip()
-                times[STUDY_TIME] = int(times[STUDY_TIME])
-            except:
-                "Input error" "please input number"
             try:
                 times[SESSION_TIME] = renpy.input("How often do you want to have a break (in minutes)?").strip()
                 times[SESSION_TIME] = int(times[SESSION_TIME])
+                break
             except:
                 "Input error" "please input number"
+        while True:
             try:
                 times[BREAK_TIME] = renpy.input("How long do you want your break time to be (in minutes)?").strip()
                 times[BREAK_TIME] = int(times[BREAK_TIME])
@@ -66,7 +70,7 @@ label start: # day 1
     # show bg 
     # show traveller #at right
     # hide traveller
-    show bg afternoon
+    show bg afternoon with Fade(1.0, 0, 2.0)
     # show traveller #at right
     # hide traveller
     'The sun begins its descent in the sky as I walk \nhome from school.'
@@ -78,9 +82,9 @@ label start: # day 1
     'The week before that, 41 minutes.'
     'And before that I didnt study at all--'
     'Thats probably not the root of all my problems.'
-    show bg living
+    show bg living with Fade(1.0, 0, 1.0)
     pause 2.0
-    show bg bedroom
+    show bg bedroom with Fade(1.0, 0, 1.0)
     'The moment Im indoors, the clock starts ticking.'
     'I jump out of my uniform, change into a comfy outfit, \nand sit down on the desk, when--'
 
@@ -114,8 +118,8 @@ label start: # day 1
     'Ryley plops down on the bed behind me, not a book in sight.'
 
     'How how how, does Ryley get by without studying!!!\nMaybe Ive got a thing or two to learn.'
+    r 'Hmm, today Im thinking [int(times[SESSION_TIME] / 60)] minutes.'
 
-    r 'Hmm, today Im thinking [STUDY_TIME] minutes.'
     'I get everything into position and get ready, picking up my pen. Its time to lock in.'
     r 'Ill set a timer, kay? Ill tell you when youre done. Good luck~!'
 
@@ -125,11 +129,12 @@ label start: # day 1
     call countdown
 
     # if session completed, exit the game
-    if times[STUDY_TIME] == 0:
-        traveller "Congrats in conpleting your study session"
-        return
+    # if times[STUDY_TIME] == 0:
+    #     traveller "Congrats in conpleting your study session"
+    #  return
    
-    traveller "Remaining study time: [STUDY_TIME] minutes"
+    # traveller "Remaining study time: [int(times[STUDY_TIME] / 60)] minutes"
+
 
     'Ding, ding~\nThe sweet sound of the alarm pierces the silence.'
     r 'TIIIMES UPPPP!!!!!'
@@ -155,8 +160,6 @@ label day1_evening:
     'I pull mine out too with a grin. Itll be a breath of fresh air after the studying.'
     # play sfx clash royale opening
     you 'Youre on.'
-
-    call countdown
 
     jump day1_midnight2
     return
@@ -293,9 +296,8 @@ label day2:
 
     call countdown
 
-    while times[STUDY_TIME] > 0:
-        call countdown
-    return
+    # while times[STUDY_TIME] > 0:
+    #     call countdown
 
     'RING RING RIIIIIING!!!'
     r 'Tiiimes up!!!!'
@@ -305,13 +307,16 @@ label day2:
     you 'Surprised its so warm in here then..!'
 
     'We enjoy a warm, cozy night in the igloo.'
+    return
+    
+
 
 label countdown:
     python:
-        times[SESSION_TIME] = min(times[SESSION_TIME], times[STUDY_TIME])
-        times[STUDY_TIME] -= times[SESSION_TIME]
-        times[BREAK_TIME] = min(times[BREAK_TIME], times[STUDY_TIME])
-        times[STUDY_TIME] -= times[BREAK_TIME]
+        # times[SESSION_TIME] = min(times[SESSION_TIME], times[STUDY_TIME])
+        # times[STUDY_TIME] -= times[SESSION_TIME]
+        # times[BREAK_TIME] = min(times[BREAK_TIME], times[STUDY_TIME])
+        # times[STUDY_TIME] -= times[BREAK_TIME]
 
         tmp_session_time = times[SESSION_TIME]
         tmp_break_time = times[BREAK_TIME]
