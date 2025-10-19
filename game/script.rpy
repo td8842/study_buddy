@@ -11,8 +11,8 @@ define r = Character("Ryley", image = "gui/neutral.png")
 default unknown = Character("???")
 default you = Character("You")
 
-image side r neutral = "gui/neutral.png"
-image side r happy = "gui/happy.png"
+image r neutral = "gui/neutral.png"
+image r happy = "gui/happy.png"
 
 
 
@@ -90,6 +90,8 @@ label start: # day 1
 
 
     'Thats my childhood friend, my study buddy Ryley.'
+
+    show r neutral
     r 'So, what are we studying today, hmmm?'
     'Ryley kicks their shoes off from the outside and climbs through the window.'
 
