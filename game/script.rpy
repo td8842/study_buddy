@@ -1,25 +1,21 @@
 ﻿default traveller = Character('Traveller')
 
-default times = [0,0,0,0,0,0,0] # data list for functions, may not be implemented
+# data list and list index for functions
+default times = [0,0,0] 
 define STUDY_TIME = 0
 define SESSION_TIME = 1
-define SESSION_MINUTES = 2
-define SESSION_SECONDS = 3
-define BREAK_TIME = 4
-define BREAK_MINUTES = 5
-define BREAK_SECONDS = 6
+define BREAK_TIME = 2
+
+# character and background definitions
 default r = Character("Ryley")
 default unknown = Character("???")
 default you = Character("You")
-default study_time = 0
-default session_time = 0
-default break_time = 0
-# default times = [0,0,0,0,0,0,0] # data list for functions not implemented
+
 image bg afternoon = "gui/afternoon.jpg"
 image bg living = "gui/living_room.jpg"  
 image bg bedroom = "gui/bedroom.jpg"
-default is_playing_music = True
-default midnight_path_d1 = False
+
+default alternate_path = False
 
 label start: # day 1
     # initialization
@@ -53,12 +49,6 @@ label start: # day 1
         times[STUDY_TIME] = times[STUDY_TIME] * 60
         times[SESSION_TIME] = times[SESSION_TIME] * 60
         times[BREAK_TIME] = times[BREAK_TIME] * 60
-        
-        # for displaying
-        times[SESSION_MINUTES] = int(times[SESSION_TIME] / 60)
-        times[SESSION_SECONDS] = times[SESSION_TIME] % 60
-        times[BREAK_MINUTES] = int(times[BREAK_TIME] / 60)
-        times[BREAK_SECONDS] = times[BREAK_TIME] % 60
 
     # show bg 
     # show traveller #at right
@@ -93,25 +83,41 @@ label start: # day 1
     if times[STUDY_TIME] == 0:
         traveller "Congrats in conpleting your study session"
         return
-
+   
     traveller "Remaining study time: [int(times[STUDY_TIME]/60)] minutes"
 
     # different path depends on the day
-    if midnight_path_d1:
-        jump day1_midnight
+    if alternate_path:
+        jump day1_night2
     else:
         jump day1_evening
+    return
 
 label day1_evening:
     traveller "It's the evening now"
-    jump day2
+    call countdown
+    jump day1_night1
+    return
 
-label day1_midnight:
+label day1_night1:
     traveller "It's midnight now"
+    call countdown
     jump day2
+    return
+
+label day1_night2:
+    traveller "It's midnight now"
+    call countdown
+    jump day2
+    return
 
 label day2:
     traveller "It's day 2 now"
+    call countdown
+
+    while times[STUDY_TIME] > 0:
+        call countdown
+    return
 
 label countdown:
     python:
@@ -120,21 +126,29 @@ label countdown:
         times[BREAK_TIME] = min(times[BREAK_TIME], times[STUDY_TIME])
         times[STUDY_TIME] -= times[BREAK_TIME]
 
-    while times[SESSION_TIME] > 0:
-        # display message, wait 1 second, then skip
-        traveller "Remaining session time [times[SESSION_MINUTES]:02]:[times[SESSION_SECONDS]:02]{w=1}{nw}"
-        python:
-            times[SESSION_TIME] -= 1
-            times[SESSION_MINUTES] = int(times[SESSION_TIME] / 60)
-            times[SESSION_SECONDS] = times[SESSION_TIME] % 60
+        tmp_session_time = times[SESSION_TIME]
+        tmp_break_time = times[BREAK_TIME]
+        session_minutes = int(tmp_session_time / 60)
+        session_seconds = tmp_session_time % 60
+        break_minutes = int(tmp_break_time / 60)
+        break_seconds = tmp_break_time % 60
 
-    while times[BREAK_TIME] > 0:
-        traveller "Remaining break time [times[BREAK_MINUTES]:02]:[times[BREAK_SECONDS]:02]{w=1}{nw}"
+    while tmp_session_time > 0:
+        # display message, wait 1 second, then skip
+        traveller "Remaining session time [session_minutes:02]:[session_seconds:02]{w=1}{nw}"
         python:
-            times[BREAK_TIME] -= 1
-            times[BREAK_MINUTES] = int(times[BREAK_TIME] / 60)
-            times[BREAK_SECONDS] = times[BREAK_TIME] % 60
+            tmp_session_time -= 1
+            session_minutes = int(tmp_session_time / 60)
+            session_seconds = tmp_session_time % 60
+
+    while tmp_break_time > 0:
+        traveller "Remaining break time [break_minutes:02]:[break_seconds:02]{w=1}{nw}"
+        python:
+            tmp_break_time -= 1
+            break_minutes = int(tmp_break_time / 60)
+            break_seconds = tmp_break_time % 60
 
     # stops game from skipping after the timer ends
     python:
         renpy.choice_for_skipping()
+    return
