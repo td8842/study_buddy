@@ -310,7 +310,7 @@ label day2:
 
     # while times[STUDY_TIME] > 0:
     #     call countdown
-
+    show snowcg
     'RING RING RIIIIIING!!!'
     r 'Tiiimes up!!!!'
     'I set my pencil down and stand up, the snow crackling beneath me.'
