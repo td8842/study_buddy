@@ -1,11 +1,13 @@
-﻿define traveller = Character('Traveller')
-define study_time = 0
-define study_session_time = 0
+﻿default traveller = Character('Traveller')
+default study_time = 0
+default study_session_time = 0
+default break_time = 0
            
-define midnight_path_d1 = False # True = midnight
+default is_playing_music = True
+default midnight_path_d1 = False
 
 label start: # day 1
-    
+    # initialization
     python:
         user_name = renpy.input("What's your name?", length=32).strip()
 
@@ -19,6 +21,11 @@ label start: # day 1
             try:
                 session_time = renpy.input("How long do you want a small session to be (in minutes)?").strip()
                 session_time = int(session_time)
+            except:
+                "Input error" "please input number"
+            try:
+                break_time = renpy.input("How long do you want your break time to be (in minutes)?").strip()
+                break_time = int(break_time)
                 break
             except:
                 "Input error" "please input number"
@@ -30,38 +37,53 @@ label start: # day 1
         # convert to seconds
         study_time = study_time * 60
         session_time = session_time * 60
+        break_time = break_time * 60
         
         # for displaying
         session_minutes = int(session_time / 60)
         session_seconds = session_time % 60
+        break_minutes = int(break_time / 60)
+        break_seconds = break_time % 60
 
     # show bg 
     # show traveller #at right
     # hide traveller
     traveller "Hi [user_name]!"
-
     # Lore stuff
-
-    python:
-        session_time = min(session_time, study_time)
 
     traveller "You will study for [int(study_time/60)] minutes"
     traveller "You session time is [int(session_time/60)] minutes"
+    traveller "You break time is [int(break_time/60)] minutes"
+
     python:
+        session_time = min(session_time, study_time)
         study_time -= session_time
+        break_time = min(break_time, study_time)
+        study_time -= break_time
 
     while session_time > 0:
-        traveller "Remaining time [session_minutes:02]:[session_seconds:02]{w=1}{nw}"
+        traveller "Remaining session time [session_minutes:02]:[session_seconds:02]{w=1}{nw}"
         python:
             session_time -= 1
             session_minutes = int(session_time / 60)
             session_seconds = session_time % 60
 
+    while break_time > 0:
+        traveller "Remaining break time [break_minutes:02]:[break_seconds:02]{w=1}{nw}"
+        python:
+            break_time -= 1
+            break_minutes = int(break_time / 60)
+            break_seconds = break_time % 60
+
     # stops game from skipping after the timer ends
     python:
         renpy.choice_for_skipping()
 
-    
+    # if session completed, exit the game
+    if study_time == 0:
+        traveller "Congrats in conpleting your study session"
+        return
+
     traveller "Remaining study time: [int(study_time/60)] minutes"
 
     if midnight_path_d1:
