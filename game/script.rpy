@@ -1,4 +1,4 @@
-﻿default traveller = Character('Traveller')
+﻿default traveller = Character('')
 
 # data list and list index for functions
 default times = [0,0,0] 
@@ -13,7 +13,7 @@ default you = Character("You")
 
 image r neutral = "gui/neutral.png"
 image r happy = "gui/happy.png"
-
+image snowcg = "gui/snowcg.png"
 
 
 image bg afternoon = "gui/afternoon.jpg"
@@ -98,7 +98,7 @@ label start: # day 1
     show r neutral
     r 'So, what are we studying today, hmmm?'
     'Ryley kicks their shoes off from the outside and climbs through the window.'
-
+    hide r neutral
     '...and ends up on the floor.'
 
     you 'What the! You knocked over my ultra special study pencil case!'
@@ -106,17 +106,19 @@ label start: # day 1
     'Ryley scrambles around picking everything back up.'
     r 'Noo! Not your ultra special study pencil case!!'
     'I laugh and help clean up. Before we know it,\nthe room is back to its pristine studying condition.'
-
+    show r neutral
     you 'Dont worry about it too much. Youre okay too, right?'
     'Ryley brightens up, clearly really happy about something.'
     r 'Yeah!! Not a scratch!! Dont worry~'
+    hide r neutral
+    show r happy
     'I smile, relieved everythings in order.\nHehe. And now--'
     you 'Study time!! Grab your pencils, take a seat. lets lock in!!'
     
     # bg: study desk
 
     'Ryley plops down on the bed behind me, not a book in sight.'
-
+    hide r happy
     'How how how, does Ryley get by without studying!!!\nMaybe Ive got a thing or two to learn.'
     r 'Hmm, today Im thinking [int(times[SESSION_TIME] / 60)] minutes.'
 
@@ -138,8 +140,8 @@ label start: # day 1
 
     'Ding, ding~\nThe sweet sound of the alarm pierces the silence.'
     r 'TIIIMES UPPPP!!!!!'
-
-    
+    hide bg seabreak
+    show bg bedroom
     # different path depends on the day
     if alternate_path:
         jump day1_midnight1
@@ -149,6 +151,7 @@ label start: # day 1
 
 label day1_evening:
     r 'See? Youre done in no time!!'
+    show r happy
     'Though it felt like I just sat down, apparently the timer thinks otherwise.'
     you 'Huh?! Already? But I just started.'
     'I look at my desk. I realize I already finished what I sat down to do.\nHuh, time does move fast when youre locked in.'
@@ -160,12 +163,13 @@ label day1_evening:
     'I pull mine out too with a grin. Itll be a breath of fresh air after the studying.'
     # play sfx clash royale opening
     you 'Youre on.'
-
+    hide r happy
     jump day1_midnight2
     return
 
 label day1_midnight1:
     'Ryley starts shaking my chair before I can even put my pencil down.'
+    show r happy
     you 'Okay, okay!! Im done studying.'
     'Its so dark outside now, the moon high in the sky.\nGosh, how long was I out for.'
     'My stomach grumbles and thunders through the room!\n I look down sheepishly.'
@@ -173,7 +177,7 @@ label day1_midnight1:
     you 'I could go for some ramen.'
     'Normally Id just make some instant noodles,\nbut itd be nice to head out for a little bit.'
     r 'Midnight ramen always hit different. lets gooooo!'
-
+    hide r happy
     show bg night
     'Sometimes, I get pretty carried away while\nstudying and end up sitting for hours.'
     'No matter how long though, Ryley always waits for me despite never studying themself\nIm glad to have a friend like–'
@@ -214,6 +218,7 @@ label day1_midnight1:
     return
 
 label day1_midnight2:
+    show bg night
     'Its so dark outside now, the moon high in the sky.\nGosh, how long did we play for?!'
     'My stomach grumbles and thunders through the room!\n I look down sheepishly.'
     'You hungry? Come come, lets go out to eat!!\nWe can stretch our legs for a bit too!'
@@ -221,7 +226,7 @@ label day1_midnight2:
     'Normally Id just make some instant noodles, but itd be nice to head out for a little bit.'
     r 'Night time ramen always hit different! lets gooooo!!!'
 
-    show bg night
+    show bg ramenbreak
     pause 2.0
     'Sometimes, I get pretty carried away while studying and end up sitting for hours.'
     'No matter how long though, Ryley always waits for me despite never studying themself.\nIm glad to have a friend like--'
@@ -247,20 +252,26 @@ label day1_midnight2:
     return
 
 label day2:
+    show bg afternoon
     traveller "It's day 2 now"
     'Its a Tuesday morning, when-'
     'A devious creature spills onto the floor.\nThrough my window.\nAnd knocks over my ultra special study pencil case.'
+    show r happy
     r 'ahaha! surprise..!'
     'Ryley gets up promptly and cleans up the mess with me, and looks at me with a splash of guilt on their face.'
     you 'My ultra special blah blah blah.. every time!!'
+    show r neutral
     'Judging from Ryleys expression,\nI immediately know somethings up.'
     r 'Sorry, I was just so excited. you know, classes are cancelled today!'
     'I blink. I check my phone, and sure enough, an email was sent a few seconds ago from our instructor that classes were indeed cancelled today.'
     you 'Would you look at that. what do you wanna do today then?\nNot involving windows or pencil cases, please.'
     'Ryley holds up a pair of suspiciously plane ticket shaped plane tickets.'
+    show r happy
     r 'Lets go to Antarctica!'
 
-    # bg plane
+    pause 2.0
+    hide r happy
+    show bg artic
     you 'How, how, how did we get here!!!'
     'I look outside, and the world is snow- crystal clear, white snow as far as the eye could see.'
     'Intercom: We are now landing. Passengers, please hang on! Its our pilots first day. Of training.'
@@ -269,14 +280,14 @@ label day2:
 
     # bg fades to black
     pause 2.0
-
+    show r neutral
     'We land safely, and step outside into wonderland. Snow, snow, snow, and penguins?'
     you 'Ryley Ryley Ryley, wanna-'
     'I turn to Ryley, but theyre not there.\nI look back at the penguins, and\nRyley has one attached to them, already playing.'
-
+    hide r neutral
     'We spend the whole morning playing with penguins and playing with snow.\nBefore long, the temperature begins to stoop.'
     'the Sun goes down real fast over here, it seems.'
-
+    show r happy
     # bg evening arctic
 
     you 'What should we do about shelter?'
@@ -285,7 +296,7 @@ label day2:
     'Ryley pulls out a pair of hollow cubes to form snow bricks.'
     you 'You really thought this one through, huh..!'
     'We spend spend noon building an igloo, and before long, its complete.'
-
+    show bg artic
     r 'There we go!! Huff huff- maybe its time a little break?'
     'Panting, I collapse inside the igloo as well.\nRyley lights a candle, illuminating the igloo with a warm glow.'
     you 'Huff.. I guess I can get a little studying in!'
@@ -293,7 +304,7 @@ label day2:
     r 'Okayyy!!! Ill watch and make sure no polar bears come knocking!'
     'Though there are no polar bears in Antarctica,\nI appreciate the sentiment and let Ryley take guard.'
     'Its time to lock in.'
-
+    show bg igloo
     call countdown
 
     # while times[STUDY_TIME] > 0:
