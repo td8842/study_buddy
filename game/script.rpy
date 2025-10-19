@@ -1,7 +1,8 @@
 ﻿default traveller = Character('Traveller')
 default study_time = 0
-default study_session_time = 0
+default session_time = 0
 default break_time = 0
+# default times = [0,0,0,0,0,0,0] # data list for functions not implemented
            
 default is_playing_music = True
 default midnight_path_d1 = False
@@ -86,11 +87,11 @@ label start: # day 1
 
     traveller "Remaining study time: [int(study_time/60)] minutes"
 
+    # different path depends on the day
     if midnight_path_d1:
         jump day1_midnight
     else:
         jump day1_evening
-
 
 label day1_evening:
     traveller "It's the evening now"
