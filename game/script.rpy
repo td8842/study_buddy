@@ -8,7 +8,16 @@ define SESSION_SECONDS = 3
 define BREAK_TIME = 4
 define BREAK_MINUTES = 5
 define BREAK_SECONDS = 6
-           
+default r = Character("Ryley")
+default unknown = Character("???")
+default you = Character("You")
+default study_time = 0
+default session_time = 0
+default break_time = 0
+# default times = [0,0,0,0,0,0,0] # data list for functions not implemented
+image bg afternoon = "gui/afternoon.jpg"
+image bg living = "gui/living_room.jpg"  
+image bg bedroom = "gui/bedroom.jpg"
 default is_playing_music = True
 default midnight_path_d1 = False
 
@@ -54,8 +63,25 @@ label start: # day 1
     # show bg 
     # show traveller #at right
     # hide traveller
-    traveller "Hi [user_name]!"
-    # Lore stuff
+    show bg afternoon
+    # show traveller #at right
+    # hide traveller
+    'The sun begins its descent in the sky as I walk \nhome from school.'
+    'The cicadas are crying, and inside, so am I...'
+    'I am soooo behind on my classes.'
+    # play music
+    'Last week, I was 38 minutes short of my\nweekly 40 hours of studying.'
+    'The week before that, 41 minutes.'
+    'And before that I didnt study at all--'
+    'Thats probably not the root of all my problems.'
+    show bg living
+    pause 2.0
+    show bg bedroom
+    'The moment Im indoors, the clock starts ticking.'
+    'I jump out of my uniform, change into a comfy outfit, \nand sit down on the desk, when--'
+
+    unknown 'Heya, [user_name]!! You ready to study?'
+    'I jump in my seat, and whip around towards the sound of the voice…\nNot from the door, but from the window?!'
 
     traveller "You will study for [int(times[STUDY_TIME]/60)] minutes"
     traveller "You session time is [int(times[SESSION_TIME]/60)] minutes"
