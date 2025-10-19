@@ -16,7 +16,7 @@ image bg night = "gui/night_city.jpg"
 image bg living = "gui/living_room.jpg"  
 image bg bedroom = "gui/bedroom.jpg"
 image bg igloo ="gui/igloo break.png"
-
+image r_happy = "gui/r_happy.png"
 default alternate_path = False
 
 #sound effects
@@ -28,7 +28,7 @@ label start: # day 1
         # promting for user name and study time
         while True:
             try:
-                times[STUDY_TIME] = renpy.input("How long do you want to study for (total) (in minutes)?").strip()
+                times[STUDY_TIME] = renpy.input("How long do you want to study for per session (in minutes)?").strip()
                 times[STUDY_TIME] = int(times[STUDY_TIME])
             except:
                 "Input error" "please input number"
@@ -56,7 +56,7 @@ label start: # day 1
     # show bg 
     # show traveller #at right
     # hide traveller
-    show bg afternoon
+    show bg afternoon with Fade(1.0, 0, 2.0)
     # show traveller #at right
     # hide traveller
     'The sun begins its descent in the sky as I walk \nhome from school.'
@@ -68,9 +68,9 @@ label start: # day 1
     'The week before that, 41 minutes.'
     'And before that I didnt study at all--'
     'Thats probably not the root of all my problems.'
-    show bg living
+    show bg living with Fade(1.0, 0, 1.0)
     pause 2.0
-    show bg bedroom
+    show bg bedroom with Fade(1.0, 0, 1.0)
     'The moment Im indoors, the clock starts ticking.'
     'I jump out of my uniform, change into a comfy outfit, \nand sit down on the desk, when--'
 
@@ -102,7 +102,7 @@ label start: # day 1
 
     'How how how, does Ryley get by without studying!!!\nMaybe Ive got a thing or two to learn.'
 
-    r 'Hmm, today Im thinking [int(times[STUDY_TIME]/60)] minutes.'
+    r 'Hmm, today Im thinking [int(times[STUDY_TIME] / 60)] minutes.'
     'I get everything into position and get ready, picking up my pen. Its time to lock in.'
     r 'Ill set a timer, kay? Ill tell you when youre done. Good luck~!'
 
@@ -113,9 +113,9 @@ label start: # day 1
     # if session completed, exit the game
     if times[STUDY_TIME] == 0:
         traveller "Congrats in conpleting your study session"
-        return
+      #  return
    
-    traveller "Remaining study time: [int(times[STUDY_TIME]/60)] minutes"
+    traveller "Remaining study time: [int(times[STUDY_TIME] / 60)] minutes"
 
     'Ding, ding~\nThe sweet sound of the alarm pierces the silence.'
     r 'TIIIMES UPPPP!!!!!'
@@ -141,8 +141,6 @@ label day1_evening:
     'I pull mine out too with a grin. Itll be a breath of fresh air after the studying.'
     # play sfx clash royale opening
     you 'Youre on.'
-
-    call countdown
 
     jump day1_midnight2
     return
@@ -279,8 +277,9 @@ label day2:
 
     while times[STUDY_TIME] > 0:
         call countdown
-    return
 
+    return
+    
     'RING RING RIIIIIING!!!'
     r 'Tiiimes up!!!!'
     'I set my pencil down and stand up, the snow crackling beneath me.'
