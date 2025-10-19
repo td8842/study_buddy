@@ -16,7 +16,11 @@ image bg night = "gui/night_city.jpg"
 image bg living = "gui/living_room.jpg"  
 image bg bedroom = "gui/bedroom.jpg"
 image bg igloo ="gui/igloo break.png"
-image r_happy = "gui/r_happy.png"
+image bg artic = "gui/articnight.jpeg"
+image bg ramen = "gui/ramenstore.jpeg"
+image bg seabreak = "gui/seabreak.png"
+image bg ramenbreak = "gui/ramenbreak.png"
+
 default alternate_path = False
 
 #sound effects
@@ -30,13 +34,17 @@ label start: # day 1
             try:
                 times[STUDY_TIME] = renpy.input("How long do you want to study for per session (in minutes)?").strip()
                 times[STUDY_TIME] = int(times[STUDY_TIME])
+                break
             except:
                 "Input error" "please input number"
+        while True:
             try:
                 times[SESSION_TIME] = renpy.input("How often do you want to have a break (in minutes)?").strip()
                 times[SESSION_TIME] = int(times[SESSION_TIME])
+                break
             except:
                 "Input error" "please input number"
+        while True:
             try:
                 times[BREAK_TIME] = renpy.input("How long do you want your break time to be (in minutes)?").strip()
                 times[BREAK_TIME] = int(times[BREAK_TIME])
@@ -101,21 +109,23 @@ label start: # day 1
     'Ryley plops down on the bed behind me, not a book in sight.'
 
     'How how how, does Ryley get by without studying!!!\nMaybe Ive got a thing or two to learn.'
-
     r 'Hmm, today Im thinking [int(times[STUDY_TIME] / 60)] minutes.'
+
     'I get everything into position and get ready, picking up my pen. Its time to lock in.'
     r 'Ill set a timer, kay? Ill tell you when youre done. Good luck~!'
 
-    # bg changes to igloo
+    # bg changes to night
+    show bg seabreak
 
     call countdown
 
     # if session completed, exit the game
     if times[STUDY_TIME] == 0:
         traveller "Congrats in conpleting your study session"
-      #  return
+    #  return
    
     traveller "Remaining study time: [int(times[STUDY_TIME] / 60)] minutes"
+
 
     'Ding, ding~\nThe sweet sound of the alarm pierces the silence.'
     r 'TIIIMES UPPPP!!!!!'
@@ -159,6 +169,8 @@ label day1_midnight1:
     'Sometimes, I get pretty carried away while\nstudying and end up sitting for hours.'
     'No matter how long though, Ryley always waits for me despite never studying themself\nIm glad to have a friend like–'
 
+    show bg ramenbreak
+    
     'I hear the worlds loudest slurp next to me,\nbelonging to none other than Ryley.'
     r 'So good! \nI could eat 9 more bowls.'
     you 'Hey, let me have my moment! Were overdue for some exposition!'
